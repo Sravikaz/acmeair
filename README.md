@@ -13,3 +13,5 @@ Only do this step if you do not have acces to our internal build [here](https://
 3. Download kubectx from https://github.com/ahmetb/kubectx . Run `kubectx` to check that you are in your proper openshift context to not default (openshift will not run in default context).
 3. On the web ui create project and login to that project with oc.
 4. In terminal Run `/acmeair-mainservices-java/scripts/.deployToopenshift.sh` 
+
+## TODO: Multiarch 
