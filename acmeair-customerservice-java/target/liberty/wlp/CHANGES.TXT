@@ -1,0 +1,30 @@
+PH06250 ACCESSABILITY SECTION 508 COMPLIANCE FOR ADMINCENTER
+PH09140 Liberty server request failures after the angel process is canceled
+PH09651 OpenID Connect client authzParameter and tokenParameter values not updated when dynamically removed from server configuration
+PH09657 Usage Metering discards metrics on HTTP 500 response from metering service
+PH09706 Liberty OIDC message numbers CWWKS1754 through CWWKS1759 are duplicated
+PH09834 java.lang.VerifyError on openwebbeans with Java, 8 update 11 and 7 update 65
+OLGH4300 DefaultExtensionProcessor file.not.found message does not contain default message that takes a parameter
+OLGH6019 applicationManager startTimeout blocks startup when app is missing.
+OLGH6129 Fix Java 2 Security issues with JSPs
+OLGH6246 Apply "useAuthenticationDataForUnprotectedResource" to jwtSso cookie
+OLGH6255 jsonp-1.1 api dependencies incorrect
+OLGH6295 ClassCastException when using binaryLog with --monitor
+OLGH6360 Filter out embedded server dependencies for Spring Boot 2.1.x
+OLGH6407 Test Failure (20190101-0221): com.ibm.ws.kernel.boot.ServerStartAsServiceTest.testWinServiceLifeCycle
+OLGH6521 Generic types are lost in MP Rest Client and JAX-RS clients due to bug in JsonBProvider
+OLGH6527 Stack overflow scheduling new ManagedScheduledExecutor task from task
+OLGH6573 Application exceptions should not be wrapped in EJBException
+OLGH6628 Command line variables aren't working on windows
+OLGH6641 ClassNotFoundException thrown during sessionPostInvoke  
+OLGH6659 ServletRequest.getContextPath() might return wrong value when OIDC app is in used.
+OLGH6668 Externalize maxOpenConnections tcpOptions 
+OLGH6725 Using slash slash comment in JSP expression spanning lines can get JSP error
+OLGH6727 JSP slash slash comment fix
+OLGH6761 Custom JAX-RS ParamConverter doesn't work for collection and array types
+OLGH6768 Using slash slash comment in JSP expression spanning lines can get JSP error, Java7 compatible
+OLGH6790 Loading classes from multi-release jars does not work
+OLGH6812 HTTP request header "If-Modified-Since" parsing fails with IllegalArgumentException if default Locale isn't US
+OLGH6822 Automatic EJB Timer creation skipped if database tables do not exist
+OLGH6868 WebContainer: make code more service deactivate aware
+OLGH6951 ClassNotFoundException during JSF initialization

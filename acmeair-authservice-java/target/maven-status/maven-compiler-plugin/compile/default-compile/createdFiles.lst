@@ -1,0 +1,9 @@
+com/acmeair/health/AuthHealthCheck.class
+com/acmeair/restclient/CustomerClient.class
+com/acmeair/restclient/LoginFallbackHandler.class
+com/acmeair/web/AuthServiceApp.class
+com/acmeair/web/AuthServiceRest.class
+com/acmeair/AcmeAirConstants.class
+com/acmeair/config/SessionConfiguration.class
+com/acmeair/utils/SecurityUtils.class
+com/acmeair/restclient/LoginResponse.class

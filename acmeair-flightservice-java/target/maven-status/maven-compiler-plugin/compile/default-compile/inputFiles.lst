@@ -1,0 +1,15 @@
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/AirportCodeMapping.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/web/FlightServiceRest.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/AcmeAirConstants.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/config/FlightConfiguration.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/mongo/MongoConstants.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/service/FlightService.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/mongo/ConnectionManager.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/service/KeyGenerator.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/web/FlightServiceApp.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/health/FlightLivenessHealthCheck.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/health/FlightReadinessHealthCheck.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/config/FlightLoaderRest.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/web/MilesResponse.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/loader/FlightLoader.java
+/home/tdale/github/acmeair/acmeair-flightservice-java/src/main/java/com/acmeair/mongo/services/FlightServiceImpl.java

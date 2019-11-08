@@ -1,0 +1,22 @@
+PH06340 Potential denial of service vulnerability in WebSphere Application Server (CVE-2019-4046)
+PH08828 OUTOFMEMORY IN INJECTIONENGINE CACHE
+PH08872 THE SERVLETREQUEST.GETCONTEXTPATH() MIGHT RETURN A DIFFERENT CONTEXT PATH WHEN USING WITH OIDC CLIENT APPLICATION.
+PH09634 The policy-attachments-server.xml file under WEB-INF is not processed
+PH10537 SMF 120 subtype 11 and 12 records should report the value of cvtzcbp
+PH10538 The RCVTID is not available to Java applications deployed in Liberty
+PI91146 LIBERTY RUNS UNNECESSARY AUTHENTICATION LOGIC WHEN TAI IS CONFIGURED.
+OLGH1338 invokeForUnprotectedURI triggers unnecessary authentication
+OLGH5376 LdapConnection getAttributesByUniqueName() throws EntityNotFoundException for existing user
+OLGH6756 Initial requests with custom method (including PATCH) fail with HTTP/2
+OLGH6982 JAX-RS 2.1 Performance
+OLGH6987 Redirect Scheme and Port Mismatch
+OLGH7044 Externalize ThrowIOEForInboundConnections httpOptions 
+OLGH7052 mpFT 2.0: Circuit Breaker metrics updated incorrectly when non-failure exception thrown
+OLGH7071 Outbound SSL Connection IOException
+OLGH7080 FT 2.0: Circuit breaker doesn't correctly restrict executions when in half-open state
+OLGH7083 Using Automatic WorkQueue for Async JAX-RS responses
+OLGH7102 Improve BNF Header Storage
+OLGH7171 inherited templated transient views raising "unable to create views" exceptions
+OLGH7184 Test Failure: EEConcurrencySpecTest.testListenerInvokeAnyWithTimeout Future.get interrupted during taskDone with CWWKC1120E
+OLGH7211 getManagedConnection: illegal state exception. State = STATE_INACTIVE  after abort due to transaction timeout
+OLGH7260 Problems with resolution of environment variables

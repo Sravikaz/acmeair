@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<liberty-plugin-config>
+    <activeBuildProfiles>
+        <profileId>liberty</profileId>
+    </activeBuildProfiles>
+    <installDirectory>/home/tdale/github/acmeair/acmeair-authservice-java/target/liberty/wlp</installDirectory>
+    <serverDirectory>/home/tdale/github/acmeair/acmeair-authservice-java/target/liberty/wlp/usr/servers/defaultServer</serverDirectory>
+    <userDirectory>/home/tdale/github/acmeair/acmeair-authservice-java/target/liberty/wlp/usr</userDirectory>
+    <serverOutputDirectory>/home/tdale/github/acmeair/acmeair-authservice-java/target/liberty/wlp/usr/servers/defaultServer</serverOutputDirectory>
+    <serverName>defaultServer</serverName>
+    <configFile>/home/tdale/github/acmeair/acmeair-authservice-java/src/main/liberty/config/server.xml</configFile>
+    <bootstrapProperties>
+        <app.location>acmeair-authservice-java-3.0.0-SNAPSHOT.war</app.location>
+        <default.http.port>9080</default.http.port>
+        <default.https.port>9443</default.https.port>
+    </bootstrapProperties>
+    <jvmOptionsFile>/home/tdale/github/acmeair/acmeair-authservice-java/src/main/liberty/config/jvm.options</jvmOptionsFile>
+    <appsDirectory>apps</appsDirectory>
+    <looseApplication>false</looseApplication>
+    <stripVersion>false</stripVersion>
+    <installAppPackages>project</installAppPackages>
+    <applicationFilename>acmeair-authservice-java-3.0.0-SNAPSHOT.war</applicationFilename>
+    <assemblyArtifact>
+        <groupId>com.ibm.websphere.appserver.runtime</groupId>
+        <artifactId>wlp-webProfile8</artifactId>
+        <version>19.0.0.3</version>
+        <type>zip</type>
+    </assemblyArtifact>
+    <assemblyArchive>/home/tdale/.m2/repository/com/ibm/websphere/appserver/runtime/wlp-webProfile8/19.0.0.3/wlp-webProfile8-19.0.0.3.zip</assemblyArchive>
+    <assemblyInstallDirectory>/home/tdale/github/acmeair/acmeair-authservice-java/target/liberty</assemblyInstallDirectory>
+    <refresh>false</refresh>
+    <installAppsConfigDropins>/home/tdale/github/acmeair/acmeair-authservice-java/target/liberty/wlp/usr/servers/defaultServer/configDropins/defaults/install_apps_configuration_1491924271.xml</installAppsConfigDropins>
+    <projectType>war</projectType>
+    <projectCompileDependency>javax.inject:javax.inject:1</projectCompileDependency>
+    <projectCompileDependency>org.eclipse.microprofile.rest.client:microprofile-rest-client-api:1.3.2</projectCompileDependency>
+    <projectCompileDependency>org.bitbucket.b_c:jose4j:0.6.5</projectCompileDependency>
+    <projectCompileDependency>org.slf4j:slf4j-api:1.7.21</projectCompileDependency>
+    <warSourceDirectory>/home/tdale/github/acmeair/acmeair-authservice-java/src/main/webapp</warSourceDirectory>
+</liberty-plugin-config>
