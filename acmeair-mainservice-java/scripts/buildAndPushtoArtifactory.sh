@@ -16,7 +16,7 @@
 set -exo pipefail
 
 NAMESPACE="acmeair"
-ARCH = uname -m
+ARCH="$(uname -m)"
 DOCKERFILE=Dockerfile-base
 CLUSTER=${DOCKER_REGISTRY}
 
