@@ -1,0 +1,35 @@
+language: bash
+sudo: required
+services:
+- docker
+dist: xenial
+jobs:
+  include:
+  - stage: Build
+    os: linux
+    env: DOCKER_FILE=Dockerfile-x86 
+    script: "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+  - os: linux-s390
+    env: DOCKER_FILE=Dockerfile-s390x 
+    script: "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+  - os: linux-ppc64le
+    env: DOCKER_FILE=Dockerfile-ppc64le
+    script: "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+    
+  - stage: Manifest
+    script:
+    - sudo bash ci/enable-experimental.sh
+    - sudo bash ci/manifest-create-and-push.sh
+    env: DOCKER_IMAGE=example-docker
+env:
+  global:
+  - DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com
+  - DOCKER_IMAGE=example-docker
+  - secure: Tx9ZYqtcEfEJ42XJ8uQJImGrcejwWRKH2VoxEa1Hdnp48pJX0JP9IClWvTJEIFG33zmCh6qNBid4G0+xFszA1OX8OOuN6aMyPBkKNdOOSFMfni41GWITJXr56liPchMA2nk8k3FB5Aq9OQFsre6Cs8Ls7muxr5BrYlxitNN2w2mae5AsxqJQzNyLdDIwXu5Lq0WfXlIJwIZyyxvMVLEIUeYfVVSFU6EC0PF+M5PpVWGWTHLDT2XtMQle5Zt3o8qMSr800X/ucnYVFSYU87RrPkefwjkblpOzPHEdg6XgF0Ubj74UWb7VvquFatjWZxCeEN4w77XJWMMIhQa988fsWBK3ZKt7cU7JenIlwTcVIWMa+6bAjNxJ8zX5OBfjOH8arVizf/LaSyabnvzwUjFlso5+VMdQTpx/pfAOYDABe086EYyT3pFoVg3nGyZKlPhBQDMG430yGVkzI1XgIw2SOmp2YTINKcRStc6uS4tWjx8wY9JcNnVF7ZMWUewPmtrniioaEuuufPtoihaZYsly4d8RXNme8l7eJp8O0doB//KnpJDI+iPf3bYaOSJia9xULab9/7bU75V7ypVcQMTsz+IJTJXZ9RmtMEgn+aAYOAQq5++nryiwN1snN6ONLAchlBSsrUZpwc03Go8dPMSNASZowIAvLVfRc6PY63rFGb4=
+  - secure: EotpOfhy79ddzvGWVwKi1c5RKn3zXADWcCXlKA6QMJAZsdfAftI1R2Epd0s1eUmISIwl5HLgCrRD1goAR9d1sI8cQgmugs5/fdebttKWFj0GqiMF1yaKys+OWzBLz162e4hqjypPdZq5nnziyibjdoYeqOrVakP/gw2VDebuMZIWBQK4y/GwENd7a90BvLpT91ikPy7oSyHlFeUa+Cr8iXlXZLpayh7klOcVd8Wo4RW+eTq37YFV/tb1RlFbgaq57ML1JpcyvYBGuJVZPj8RCf0/DmmW3lZOSAq78+pdSjXESvO0UVpCXy3c6zqjMFYce/k99dXyhHYBO5pUIiNTWHubKV22n1n3cpZBkKNNBX+iza2d4FyNRjz+ecBjSK8Rx9Liyn4dYI2nFfSCPZ3hXhXIWjVHCVKFLvzy6svUA2Hi6PzSNFZWEUTztzYgAEVeF81HvSuKVJuw0UB+g5Yc+CgLmYWJp3N/NaUnOAjZbuPhtT69JfHWLeDMA9ZpXO12AdpOO56N8ranuWK+fRXXuebqN5ejFnbUYl10vXdH6BXL63lKui2ciieQz29PA+uiPDGHm4AQzrnv+LS2R0+wEfYqFEc3f0zv5BCYkiF2AsmO3VFr9VP86aSbMnaSwTTB6bgQxnJ6iskpoVHGzCyMOCt+vpOOM5zsSOwjHYk0/wA=
+notifications:
+  slack:
+    secure: PLp4khYLUpMRqsMCN/e2RZytVE+lPPoVjmDhh4opsig2F2/eyKrm83IYkgkvg74p0PIXxu0iYanhsSHc9M9dM09mme4LT8x11AZdxWLu0RaNtjMm/1nST9N2jgNgzVtccSEpoEWSSAsBVRVUKmIqK4cOCKNDcmJ9IODhE8f5QUK/u0NNZZzXhhreV17Q3QaBZkQhOB6gCcmSTnOYf0W+wWi2H5ICdlYOKPW2iqmTjz+M4aQeuX0X+hRg3voqrCcwy2AVIImxs3b33xBJbVKFG9+a0vsM4/fnYAE6meowtgJu8nigCCVTLYiudp5NCWJZW8WV9Cgg5CQrXFIoVo7LsmNI7hNAQkvfZVOUKcn0YFnBjyvEEPnBqJhbg+hw5Tsjt6ZkFywTBTgIIRl4if7/uAVARn9hoKB+asTvaPw1s21JONwzLqV0CRb9NC2z+M+B/CNYjpub1IWLy+H6g3ijX1agbaRy4Lw9WU/bnDhKcEkszXbBoFzKrY/YluiA9+PRhUZWEX9JJO+Mi8WGWLAhT6P/y8PHYbT6GCR8jHZ1HV5Q0BIy37C1hGrOSv3Ur+oXHtBmzqpUAxBtLW9cgE27s0WySwhlJT48pEBqnUn937mXoAQexBIq883119l2fkgTxqYUNxSkUsIYL6g8RNv6ENTH31NZH4kPek4HpKuaPuU=
+    template:
+    - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch}
+      by %{author} %{result} in %{duration}. ```sys-ltic-docker-local.artifactory.swg-devops.com/%{docker_image}:%{build_id}```

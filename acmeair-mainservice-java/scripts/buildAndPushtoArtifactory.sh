@@ -16,43 +16,33 @@
 set -exo pipefail
 
 NAMESPACE="acmeair"
-
-if [[ "${1}" == "--with-microclimate" ]]
-then
-  DOCKERFILE=Dockerfile
-  CLUSTER=${2:-mycluster.icp}
-elif [[ "${1}" == "--open-liberty" ]]
-then
-  DOCKERFILE=Dockerfile-ol-base
-  CLUSTER=${2:-mycluster.icp}
-else
-  DOCKERFILE=Dockerfile-base
-  CLUSTER=sys-ltic-docker-local.artifactory.swg-devops.com
-fi
+ARCH = uname -m
+DOCKERFILE=Dockerfile-base
+CLUSTER=${DOCKER_REGISTRY}
 
 cd "$(dirname "$0")"
 cd ..
 mvn clean package
 
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java -f ${DOCKERFILE} .
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID}
 
 cd ../acmeair-authservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java -f ${DOCKERFILE} .
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID}
 
 cd ../acmeair-bookingservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java -f ${DOCKERFILE} .
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID}
 
 cd ../acmeair-customerservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java -f ${DOCKERFILE} .
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID}
 
 cd ../acmeair-flightservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java -f ${DOCKERFILE} .
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID}
