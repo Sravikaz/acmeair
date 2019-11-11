@@ -25,24 +25,33 @@ cd ..
 mvn clean package
 
 docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:latest
 docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID}
-
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:latest
 cd ../acmeair-authservice-java
 mvn clean package
 docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:latest
 docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:latest
 
 cd ../acmeair-bookingservice-java
 mvn clean package
 docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:latest
 docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:latest
 
 cd ../acmeair-customerservice-java
 mvn clean package
 docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:latest
 docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:latest
 
 cd ../acmeair-flightservice-java
 mvn clean package
 docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:latest
 docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:latest
