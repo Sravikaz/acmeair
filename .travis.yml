@@ -8,14 +8,20 @@ jobs:
   - stage: Build
     os: linux
     env: DOCKER_FILE=Dockerfile-x86 
-    script: "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+    script: 
+    - "make docker:login"
+    - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
   - os: linux-s390
     env: DOCKER_FILE=Dockerfile-s390x 
-    script: "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+    script: 
+    - "make docker:login"
+    - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
   - os: linux-ppc64le
     env: DOCKER_FILE=Dockerfile-ppc64le
-    script: "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
-    
+    script: 
+    - "make docker:login"
+    - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+
   - stage: Manifest
     script:
     - sudo bash ci/enable-experimental.sh
