@@ -1,10 +1,17 @@
-#Acme Air setup for Openshift
+# Acme Air setup for Openshift
 
-The following describe necessary changes to adapt https://github.com/blueperf/acmeair-mainservice-java to run on openshift.
+The following describe necessary steps to run on Acme-Air workload on openshift.
 
-1. Create new directory `mkdir acme-air` and pull each of the 5 acme-air-java repositories into subdirectories here.
+## Setting up Image repository using Artifactory
+Only do this step if you do not have acces to our internal build [here](https://na.artifactory.swg-devops.com/artifactory/webapp/#/artifacts/browse/tree/General/sys-ltic-docker-local/acmeair)
+1. Create artifactory or other repository hub and get pull secret. Edit acmeair-mainservices-java/scripts/buildAndPushtoICP.sh with `Cluster=<your artifactory url>`. Run script then wait while images are set up on artifactory.
 
-2. Create artifactory repository and get pull secret. Edit then run acmeair-mainservices-java/scripts/buildAndPushtoICP.sh with `Cluster=<your artifactory url>` wait a while then check that all images are now on artifactory.
+## x86 Cluster deployment
 
-3. Download and setup kubectx from https://github.com/ahmetb/kubectx . Run `kubectx acmeair` to set context to non default (openshift will not run in default context).
-3. Open Openshift web ui. Create project and login to that project with oc. Run .deployToopenshift.sh 
+1. On openshift online gui and select "Copy Login Command" from dropdown under your name in the upper right hand corner.
+2. Paste in in terminal and run kubectx
+3. Download kubectx from https://github.com/ahmetb/kubectx . Run `kubectx` to check that you are in your proper openshift context to not default (openshift will not run in default context).
+3. On the web ui create project and login to that project with oc.
+4. In terminal Run `/acmeair-mainservices-java/scripts/.deployToopenshift.sh` 
+
+## TODO: Multiarch 
