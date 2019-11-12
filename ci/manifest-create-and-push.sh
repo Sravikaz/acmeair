@@ -80,7 +80,7 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java:latest $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java-amd64:$DOCKER_TAG --arch amd64 && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java-s390x:$DOCKER_TAG --arch s390x && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java-ppc64le:$DOCKER_TAG --arch ppc64le && \
-    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java-amd64:$DOCKER_TAG --arch amd64 && \
+    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java-amd64:$DOCKER_TAG --arch amd64 
     
     # Push our two docker manifests to DOCKER_REGISTRY
     docker manifest push $DOCKER_REGISTRY/acmeair/acmeair-mainservice-java:$DOCKER_TAG
@@ -109,7 +109,7 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-authservice-java:latest $DOCKER_REGISTRY/acmeair/acmeair-authservice-java-amd64:$DOCKER_TAG --arch amd64 && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-authservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-authservice-java-s390x:$DOCKER_TAG --arch s390x && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-authservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-authservice-java-ppc64le:$DOCKER_TAG --arch ppc64le && \
-    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-authservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-authservice-java-amd64:$DOCKER_TAG --arch amd64 && \
+    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-authservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-authservice-java-amd64:$DOCKER_TAG --arch amd64 
     
     # Push our two docker manifests to DOCKER_REGISTRY
     docker manifest push $DOCKER_REGISTRY/acmeair/acmeair-authservice-java:$DOCKER_TAG
@@ -139,7 +139,7 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java:latest $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java-amd64:$DOCKER_TAG --arch amd64 && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java-s390x:$DOCKER_TAG --arch s390x && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java-ppc64le:$DOCKER_TAG --arch ppc64le && \
-    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java-amd64:$DOCKER_TAG --arch amd64 && \
+    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java-amd64:$DOCKER_TAG --arch amd64 
     
     # Push our two docker manifests to DOCKER_REGISTRY
     docker manifest push $DOCKER_REGISTRY/acmeair/acmeair-bookingservice-java:$DOCKER_TAG
@@ -169,7 +169,7 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java:latest $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java-amd64:$DOCKER_TAG --arch amd64 && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java-s390x:$DOCKER_TAG --arch s390x && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java-ppc64le:$DOCKER_TAG --arch ppc64le && \
-    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java-amd64:$DOCKER_TAG --arch amd64 && \
+    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java-amd64:$DOCKER_TAG --arch amd64 
     
     # Push our two docker manifests to DOCKER_REGISTRY
     docker manifest push $DOCKER_REGISTRY/acmeair/acmeair-customerservice-java:$DOCKER_TAG
@@ -199,7 +199,7 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java:latest $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java-amd64:$DOCKER_TAG --arch amd64 && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java-s390x:$DOCKER_TAG --arch s390x && \
     docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java-ppc64le:$DOCKER_TAG --arch ppc64le && \
-    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java-amd64:$DOCKER_TAG --arch amd64 && \
+    docker manifest annotate $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java:$DOCKER_TAG $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java-amd64:$DOCKER_TAG --arch amd64 
     
     # Push our two docker manifests to DOCKER_REGISTRY
     docker manifest push $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java:$DOCKER_TAG
