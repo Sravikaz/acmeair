@@ -27,3 +27,5 @@ jobs:
     - sudo bash ci/enable-experimental.sh
     - sudo bash ci/manifest-create-and-push.sh
     env: DOCKER_IMAGE=example-docker
+notifications:
+  slack: ibm-systems-z:D9LE6vR34TOmAatQQp2ikmja
