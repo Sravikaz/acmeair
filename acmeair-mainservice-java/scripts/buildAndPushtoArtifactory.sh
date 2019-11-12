@@ -22,13 +22,8 @@ CLUSTER=${DOCKER_REGISTRY}
 
 #Extra installations required for s390 image
 if [ ${ARCH} == 's390x' ]; then
-    sudo apt update
-    sudo apt-get install default-jre
-    java -version
-    sudo apt-get install default-jdk
-    javac -version
+    export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-s390x
     sudo apt-get install maven
-    echo $JAVA_HOME
 fi
 
 cd "$(dirname "$0")"
