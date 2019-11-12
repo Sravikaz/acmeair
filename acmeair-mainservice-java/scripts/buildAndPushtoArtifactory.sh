@@ -19,9 +19,18 @@ NAMESPACE="acmeair"
 ARCH="$(uname -m)"
 DOCKERFILE=Dockerfile-base
 CLUSTER=${DOCKER_REGISTRY}
+
+#Extra installations required for s390 image
 if [ ${ARCH} == 's390x' ]; then
+    sudo apt update
+    sudo apt-get install default-jre
+    java -version
+    sudo apt-get install default-jdk
+    javac -version
     sudo apt-get install maven
+    echo $JAVA_HOME
 fi
+
 cd "$(dirname "$0")"
 cd ..
 mvn clean package
