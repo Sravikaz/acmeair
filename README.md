@@ -1,4 +1,4 @@
-# Acme Air setup for Openshift
+# Deploying Acme Air on Openshift
 
 The following describe necessary steps to run on Acme-Air workload on openshift.
 
