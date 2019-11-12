@@ -19,7 +19,9 @@ NAMESPACE="acmeair"
 ARCH="$(uname -m)"
 DOCKERFILE=Dockerfile-base
 CLUSTER=${DOCKER_REGISTRY}
-
+if [ ${ARCH} == 's390x' ]; then
+    sudo apt-get install maven
+fi
 cd "$(dirname "$0")"
 cd ..
 mvn clean package
