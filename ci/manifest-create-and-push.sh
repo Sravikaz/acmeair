@@ -206,3 +206,4 @@ if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]
     docker manifest push $DOCKER_REGISTRY/acmeair/acmeair-flightservice-java:latest
 
 
+fi
