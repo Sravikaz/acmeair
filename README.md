@@ -28,3 +28,4 @@ The following describe necessary steps to run on Acme-Air workload on openshift.
 7. Wait a couple minutes and go to http://<auto_generated_url>/acmeair
 8. Go to the Configuration Page and Load the Database
 
+Note: If your mongodb containers are failing its probably because you have an openshift policy demanding all containers run as nonroot. This can be fixed with `oc adm policy add-scc-to-group`.
