@@ -12,7 +12,8 @@ RUN apt-get update \
     && apt-get purge --auto-remove -y unzip \
     && apt-get purge --auto-remove -y wget \
     && rm -rf /var/lib/apt/lists/* \
-    && chown -R 1001:0 /opt/ibm/wlp/usr/extension
+    && chown -R 1001:0 /opt/ibm/wlp/usr/extension \ 
+    && chown 1001:0 /data/db
 USER 1001
 
 COPY --chown=1001:0 src/main/liberty/config/server.xml /config/server.xml

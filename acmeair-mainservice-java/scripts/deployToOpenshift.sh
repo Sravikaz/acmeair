@@ -22,6 +22,7 @@ else
 fi
 
 cd "$(dirname "$0")"
+#delete all instances in manifest of this microservice on Openshift
 cd ..
 kubectl delete -f ${MANIFESTS}
 if [[ `grep -c sys-ltic-docker-local.artifactory.swg-devops.com ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml` == 0 ]]
@@ -29,11 +30,12 @@ then
   echo "Adding sys-ltic-docker-local.artifactory.swg-devops.com/acmeair/"
   sed -i "s@acmeair-mainservice-java:latest@sys-ltic-docker-local.artifactory.swg-devops.com/acmeair/acmeair-mainservice-java:latest@" ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml
 fi
+#Now add all new instances of all mainservice relevant deployments
 kubectl apply -f ${MANIFESTS}
 echo "Removing sys-ltic-docker-local.artifactory.swg-devops.com/acmeair/"
 sed -i "s@sys-ltic-docker-local.artifactory.swg-devops.com/acmeair/acmeair-mainservice-java:latest@acmeair-mainservice-java:latest@" ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml
 
-
+#repeat pattern for all other services
 cd ../acmeair-authservice-java
 kubectl delete -f ${MANIFESTS}
 if [[ `grep -c sys-ltic-docker-local.artifactory.swg-devops.com ${MANIFESTS}/deploy-acmeair-authservice-java.yaml` == 0 ]]
