@@ -14,6 +14,9 @@ oc create secret docker-registry <pull_secret_name> \
     --docker-password=<password> \
     --docker-email=<email>
   ```
+  and make sure to add the secret to your secive account (probably default)
+  ` oc secrets add serviceaccount/default secrets/<pull_secret_name> --for=pull `
+  
 5. If not using our internal registry, edit acmeair-mainservices-java/scripts/buildAndPushtoOpenshift.sh with `Cluster=<your artifactory url>`. 
 
 *Internally we have travis automation to autimatically update terraform images upon new push to this repo.*
