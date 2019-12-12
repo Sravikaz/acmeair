@@ -16,13 +16,15 @@ oc create secret docker-registry <pull_secret_name> \
   ```
   and make sure to add the secret to your secive account (probably default)
   ` oc secrets add serviceaccount/default secrets/<pull_secret_name> --for=pull `
-  
-5. If not using our internal registry, edit acmeair-mainservices-java/scripts/buildAndPushtoOpenshift.sh with `Cluster=<your artifactory url>`. 
+
+5. By default openshift does not allow just anyone to run containers as root. Right now the mongoDB container runs as root so be sure to `oc adm policy add-scc-to-group anyuid system:authenticated  ` so that the db containers can run.
+
 
 *Internally we have travis automation to autimatically update terraform images upon new push to this repo.*
 
 ## Connecting Openshift to AcmeAir 4.
 
+0. If not using our internal registry, edit acmeair-mainservices-java/scripts/buildAndPushtoOpenshift.sh with `Cluster=<your artifactory url>`. 
 1. Obtain access to both openshift gui and cli. Open gui via Openshift online link or by running ` echo "https://$(grep console /etc/hosts | cut -d' ' -f 4 | awk '/./{line=$0} END{print line}')"` to get url. Use the  "Copy Login Command" from dropdown under your name in the upper right hand corner to get a command to login to your cluster via command line. Run an `oc status` to check that you are logged in. If you are in another cluster Download kubectx from https://github.com/ahmetb/kubectx . Run `kubectx` to check that you are in your proper openshift context to not default (openshift will not run in default context).
 2. On the web ui create project and login to that project using `oc login`
 3. In terminal Run `/acmeair-mainservices-java/scripts/.deployToOpenshift.sh` to create deployments for all of the services required for Acme air. 
