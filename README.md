@@ -7,7 +7,8 @@ The following describe necessary steps to run on Acme-Air workload on openshift.
 2. Create artifactory or other repository hub. Only do this step if you do not have acces to our internal build [here](https://na.artifactory.swg-devops.com/artifactory/webapp/#/artifacts/browse/tree/General/sys-ltic-docker-local/acmeair)
 3. Get pull secret from registry.
 4. Add pull secret to openshift with
-```oc create secret docker-registry <pull_secret_name> \
+```
+oc create secret docker-registry <pull_secret_name> \
     --docker-server=<registry_server> \
     --docker-username=<user_name> \
     --docker-password=<password> \
