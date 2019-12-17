@@ -17,7 +17,7 @@ set -exo pipefail
 
 NAMESPACE="acmeair"
 ARCH="$(uname -m)"
-DOCKERFILE=Dockerfile-base
+DOCKERFILE=Dockerfile
 CLUSTER=${DOCKER_REGISTRY}
 
 #Extra installations required for s390 image
