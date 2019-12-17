@@ -1,11 +1,11 @@
-Created-By: 1.8.0 (IBM Corporation)
+Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: io.opentracing; type=third-party,
  io.opentracing.tag; type=third-party,
  io.opentracing.propagation; type=third-party,
  com.ibm.ws.opentracing.tracer; type=ibm-spi
 IBM-App-ForceRestart: install,
  uninstall
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.3"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA
@@ -19,6 +19,7 @@ Subsystem-Content: com.ibm.websphere.appserver.spi.opentracing.1.2_1.0-javadoc.z
  com.ibm.ws.require.java8; version="[1.0.0,1.0.200)",
  com.ibm.ws.opentracing.1.2; version="[1.0.0,1.0.200)",
  com.ibm.ws.opentracing.1.2.cdi; version="[1.2.0,1.2.200)",
+ com.ibm.ws.io.opentracing.opentracing-util.0.31.0; version="[1.0.0,1.0.200)",
  com.ibm.websphere.appserver.thirdparty.opentracing.0.31.0; location:="dev/api/third-party/,lib/"; mavenCoordinates="io.opentracing:opentracing-api:0.31.0"; version="[1.0.0,1.0.200)"
 Subsystem-Description: %description
 Subsystem-License: https://www.eclipse.org/legal/epl-v10.html

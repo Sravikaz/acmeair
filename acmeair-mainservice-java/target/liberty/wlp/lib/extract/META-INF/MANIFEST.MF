@@ -1,24 +1,37 @@
 Manifest-Version: 1.0
 Archive-Content-Type: install
 Archive-Root: wlp/
-Bnd-LastModified: 1553200985125
-Bundle-Copyright: The Program materials contained in this file are IBM
-  copyright materials. WLP Copyright International Business Machines C
- orp. 1999, 2019 All Rights Reserved * Licensed Materials - Property o
- f IBM US Government Users Restricted Rights - Use, duplication or dis
- closure restricted by GSA ADP Schedule Contract with IBM Corp.
+Build-Identifier: SNAPSHOT-Wed Nov 20 03:19:47 GMT 2019
+Bundle-Copyright: Copyright (c) 1999, 2019 IBM Corporation and others.
+  All rights reserved. This program and the accompanying materials are
+  made available under the terms of the Eclipse Public License v1.0 wh
+ ich accompanies this distribution, and is available at http://www.ecl
+ ipse.org/legal/epl-v10.html.
+Bundle-Description: Self extracting jar tools; version=1.0
+Bundle-License: Eclipse Public License; url=https://www.eclipse.org/le
+ gal/epl-v10.html
+Bundle-ManifestVersion: 2
+Bundle-Name: WLP Lib Extract
+Bundle-SCM: connection=scm:git:https://github.com/OpenLiberty/open-lib
+ erty.git, developerConnection=scm:git:https://github.com:OpenLiberty/
+ open-liberty.git, url=https://github.com/OpenLiberty/open-liberty/tre
+ e/master
+Bundle-SymbolicName: wlp.lib.extract
 Bundle-Vendor: IBM
-Created-By: 1.8.0 (IBM Corporation)
+Bundle-Version: 1.0.35.cl191220191120-0300
+Can-Redefine-Classes: false
+Can-Retransform-Classes: true
+Created-By: 11.0.2 (Eclipse OpenJ9)
+Export-Package: wlp.lib.extract;version="1.0.16"
 Extract-Installer: true
 IBM-Java-Options: -Xshareclasses:name=liberty-%u,nonfatal,cacheDirPerm
- =1000 -XX:ShareClassesEnableBCI -Xscmx60m -Xscmaxaot8m -XX:+EnableHCR
+ =1000 -XX:ShareClassesEnableBCI -Xscmx80m -XX:+EnableHCR -Djdk.attach
+ .allowAttachSelf=true
 Import-Package: javax.xml.parsers,org.w3c.dom
-Linux-amd64: java8-linux-x86_64
-Linux-ppc-le-x64: java8-linux-ppc64le
-Linux-ppc64: java8-linux-ppc64
-Linux-s390x: java8-linux-s390x
+Launcher-Agent-Class: wlp.lib.extract.agent.EnvCheck
 Main-Class: wlp.lib.extract.SelfExtract
 Map-Based-Self-Extractor: wlp.lib.extract.MapBasedSelfExtractor
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
-Tool: Bnd-3.3.0.201609221906
-XmxValue: 3000M
+Private-Package: wlp.lib.extract.platform,wlp.lib.extract.agent
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-4.1.0.201810181252
+

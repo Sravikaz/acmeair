@@ -3,7 +3,7 @@ IBM-API-Package: org.eclipse.microprofile.health; type=stable,
  org.eclipse.microprofile.health.spi; type=stable
 IBM-App-ForceRestart: install,
  uninstall
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.4"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA

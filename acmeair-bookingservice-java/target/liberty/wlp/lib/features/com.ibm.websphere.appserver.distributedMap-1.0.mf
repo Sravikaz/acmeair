@@ -8,7 +8,7 @@ IBM-API-Package: com.ibm.websphere.cache; type=ibm-api,
  com.ibm.ws.cache.config; type=internal,
  com.ibm.ws.cache.spi; type=ibm-api,
  com.ibm.wsspi.cache; type=ibm-api
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.4"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA

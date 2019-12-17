@@ -1,6 +1,6 @@
-Created-By: 1.8.0 (IBM Corporation)
+Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: com.ibm.wsspi.zos.tx; type="internal"
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.3"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA
@@ -26,3 +26,4 @@ Subsystem-Type: osgi.subsystem.feature
 Subsystem-Vendor: IBM Corp.
 Subsystem-Version: 1.0.0
 Tool: Bnd-4.1.0.201810181252
+WLP-Activation-Type: parallel

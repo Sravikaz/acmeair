@@ -1,10 +1,10 @@
-Created-By: 1.8.0 (IBM Corporation)
+Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: com.ibm.websphere.interrupt;type="internal"
-IBM-AppliesTo: com.ibm.websphere.appserver;productVersion="19.0.0.3"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA
-IBM-ProductID: com.ibm.websphere.appserver
+IBM-ProductID: io.openliberty
 IBM-ShortName: requestTiming-1.0
 Subsystem-Content: com.ibm.websphere.appserver.requestProbeJDBC-1.0; type="osgi.subsystem.feature",
  com.ibm.websphere.appserver.requestProbeServlet-1.0; type="osgi.subsystem.feature",
@@ -14,7 +14,7 @@ Subsystem-Content: com.ibm.websphere.appserver.requestProbeJDBC-1.0; type="osgi.
  com.ibm.websphere.interrupt; version="[1.0.0,1.0.200)",
  com.ibm.ws.request.interrupt; version="[1.0.0,1.0.200)"
 Subsystem-Description: %description
-Subsystem-License: http://www.ibm.com/licenses/wlp-featureterms-v1
+Subsystem-License: https://www.eclipse.org/legal/epl-v10.html
 Subsystem-Localization: OSGI-INF/l10n/com.ibm.websphere.appserver.requestTiming-1.0
 Subsystem-ManifestVersion: 1
 Subsystem-Name: Request Timing 1.0
@@ -22,4 +22,4 @@ Subsystem-SymbolicName: com.ibm.websphere.appserver.requestTiming-1.0; visibilit
 Subsystem-Type: osgi.subsystem.feature
 Subsystem-Vendor: IBM Corp.
 Subsystem-Version: 1.0.0
-Tool: Bnd-3.3.0.201609221906
+Tool: Bnd-4.1.0.201810181252

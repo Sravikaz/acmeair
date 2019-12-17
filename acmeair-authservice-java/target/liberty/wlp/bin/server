@@ -55,14 +55,17 @@
 #              or set to n to startup without waiting for a debugger to attach.
 #              The default value is y. 
 #
+# WLP_DEBUG_REMOTE - Whether to allow remote debugging or not. This can be set
+#              to y to allow remote debugging. The default value is n. 
+#
 # WLP_SKIP_UMASK -  Skip setting the umask value to allow the default value 
-#                   to be used.
+#              to be used.
 #
 # WLP_ZOS_PROCEDURE - The name of the STC procedure to be used to start the 
-#                     server in a z/OS environment.
+#              server in a z/OS environment.
 #
 # WLP_ZOS_JOBNAME - The job name to use when starting the server in
-#                   a z/OS environment.
+#              a z/OS environment.
 #
 ###############################################################################
 
@@ -255,7 +258,7 @@ else
   then
     # Only use if it isn't something that looks like an option
     case $1 in
-    -*);;
+    --*);;
     *)
       SERVER_NAME=$1
       shift #consume
@@ -270,7 +273,6 @@ if [ -z "$SERVER_NAME" ]
 then
   SERVER_NAME=defaultServer
 fi
-
 
 ##
 ## Set JAVA_AGENT_QUOTED if WLP_SKIP_BOOTSTRAP_AGENT is unset.
@@ -576,26 +578,28 @@ serverEnvDefaults()
   # Command-line parsing of -Xshareclasses does not allow "," in cacheDir.
   case ${WLP_OUTPUT_DIR} in
   *,*)
-    SERVER_IBM_JAVA_OPTIONS=${IBM_JAVA_OPTIONS}
+    SERVER_IBM_JAVA_OPTIONS=${OPENJ9_JAVA_OPTIONS}
     ;;
   *)
     if $shareclassesCacheDirPerm
     then
-      SERVER_IBM_JAVA_OPTIONS="-Xshareclasses:name=liberty-%u,nonfatal,cacheDir=\"${WLP_OUTPUT_DIR}/.classCache\",cacheDirPerm=1000 -XX:ShareClassesEnableBCI -Xscmx80m ${IBM_JAVA_OPTIONS}"
+      SERVER_IBM_JAVA_OPTIONS="-Xshareclasses:name=liberty-%u,nonfatal,cacheDir=\"${WLP_OUTPUT_DIR}/.classCache\",cacheDirPerm=1000 -XX:ShareClassesEnableBCI -Xscmx80m ${OPENJ9_JAVA_OPTIONS}"
     else
-      SERVER_IBM_JAVA_OPTIONS="-Xshareclasses:name=liberty-%u,nonfatal,cacheDir=\"${WLP_OUTPUT_DIR}/.classCache\" -XX:ShareClassesEnableBCI -Xscmx80m ${IBM_JAVA_OPTIONS}"
+      SERVER_IBM_JAVA_OPTIONS="-Xshareclasses:name=liberty-%u,nonfatal,cacheDir=\"${WLP_OUTPUT_DIR}/.classCache\" -XX:ShareClassesEnableBCI -Xscmx80m ${OPENJ9_JAVA_OPTIONS}"
     fi
   esac
 
-  # Add -Xquickstart -Xnoaot for client JVMs only.  AOT is ineffective if JVMs
-  # have conflicting options, and it's more important that the server JVMs be
-  # able to use AOT.
-  IBM_JAVA_OPTIONS="-Xquickstart -Xnoaot ${IBM_JAVA_OPTIONS}"
+  # Add -Xquickstart -Xnoaot for client JVMs only.  AOT is ineffective if JVMs have conflicting
+  # options, and it's more important that the server JVMs be able to use AOT.
+  # Add -Dcom.ibm.tools.attach.enable=yes to allow self-attach on z/OS
+  IBM_JAVA_OPTIONS="-Xquickstart -Xnoaot -Dcom.ibm.tools.attach.enable=yes ${OPENJ9_JAVA_OPTIONS}"
   export IBM_JAVA_OPTIONS
+  OPENJ9_JAVA_OPTIONS="-Xquickstart -Xnoaot -Dcom.ibm.tools.attach.enable=yes ${OPENJ9_JAVA_OPTIONS}"
+  export OPENJ9_JAVA_OPTIONS
 
   # Set a default file encoding if needed
   if [ -n "$defaultFileEncoding" ]; then
-    if ! expr "${JVM_OPTIONS_QUOTED} ${JVM_ARGS} ${IBM_JAVA_OPTIONS}" : '.*\(-Dfile\.encoding\=[^[:space:]]\)' > /dev/null; then
+    if ! expr "${JVM_OPTIONS_QUOTED} ${JVM_ARGS} ${OPENJ9_JAVA_OPTIONS}" : '.*\(-Dfile\.encoding\=[^[:space:]]\)' > /dev/null; then
       JVM_ARGS="${JVM_ARGS} -Dfile.encoding=$defaultFileEncoding"
     fi
   fi
@@ -623,7 +627,8 @@ serverEnvAndJVMOptions()
   serverEnv
 
   # Avoids HeadlessException on all platforms and Liberty JVMs appearing as applications and stealing focus on Mac.
-  JVM_OPTIONS_QUOTED=-Djava.awt.headless=true
+  # Declare allowAttachSelf=true so that the VM will permit a late self attach if localConnector-1.0 is enabled
+  JVM_OPTIONS_QUOTED="-Djava.awt.headless=true -Djdk.attach.allowAttachSelf=true"
   SERVER_JVM_OPTIONS_QUOTED=${JVM_OPTIONS_QUOTED}
 
   # Add -XX:MaxPermSize unless WLP_SKIP_MAXPERMSIZE is set.
@@ -665,8 +670,13 @@ serverEnvAndJVMOptions()
     mergeJVMOptions "${WLP_INSTALL_DIR}/etc/jvm.options"
   fi
 
-  # If we are running on Java 9, apply Liberty's built-in java 9 options
-  if [ -f "${JAVA_HOME}/lib/modules" ]; then
+  JPMS_MODULE_FILE_LOCATION="${JAVA_HOME}/lib/modules"
+  if [ -z "${JAVA_HOME}" ]; then
+    JPMS_MODULE_FILE_LOCATION=$(dirname $(dirname $(which java)))/lib/modules
+  fi
+
+  # If we are running on Java 9, apply Liberty's built-in java 9 options  
+  if [ -f "${JPMS_MODULE_FILE_LOCATION}" ]; then
     mergeJVMOptions "${WLP_INSTALL_DIR}/lib/platform/java/java9.options"
   fi
 
@@ -925,8 +935,9 @@ serverCmd()
 
   SAVE_JVM_OPTIONS_QUOTED=${JVM_OPTIONS_QUOTED}
   JVM_OPTIONS_QUOTED=${SERVER_JVM_OPTIONS_QUOTED}
-  SAVE_IBM_JAVA_OPTIONS=${IBM_JAVA_OPTIONS}
+  SAVE_IBM_JAVA_OPTIONS=${OPENJ9_JAVA_OPTIONS}
   IBM_JAVA_OPTIONS=${SERVER_IBM_JAVA_OPTIONS}
+  OPENJ9_JAVA_OPTIONS=${SERVER_IBM_JAVA_OPTIONS}
 
   if $os400lib; then
     serverCmdOS400 "${SERVER_CMD_BACKGROUND_LOG}" "${SERVER_NAME}" "$@"
@@ -934,6 +945,7 @@ serverCmd()
 
     JVM_OPTIONS_QUOTED=${SAVE_JVM_OPTIONS_QUOTED}
     IBM_JAVA_OPTIONS=${SAVE_IBM_JAVA_OPTIONS}
+    OPENJ9_JAVA_OPTIONS=${SAVE_IBM_JAVA_OPTIONS}
 
     if [ -n "${SERVER_CMD_BACKGROUND_LOG}" ]; then
       PID=`cat "${X_PID_FILE}"`
@@ -955,6 +967,7 @@ serverCmd()
 
       JVM_OPTIONS_QUOTED=${SAVE_JVM_OPTIONS_QUOTED}
       IBM_JAVA_OPTIONS=${SAVE_IBM_JAVA_OPTIONS}
+      OPENJ9_JAVA_OPTIONS=${SAVE_IBM_JAVA_OPTIONS}
 
       if [ $rc = 0 ]; then
         # Verify/wait for the process to start
@@ -1015,6 +1028,7 @@ serverCmd()
 
     JVM_OPTIONS_QUOTED=${SAVE_JVM_OPTIONS_QUOTED}
     IBM_JAVA_OPTIONS=${SAVE_IBM_JAVA_OPTIONS}
+    OPENJ9_JAVA_OPTIONS=${SAVE_IBM_JAVA_OPTIONS}
 
     if [ -n "${SERVER_CMD_BACKGROUND_LOG}" ]; then
       # Verify/wait for the process to start
@@ -1060,7 +1074,13 @@ case "$ACTION" in
         then
           WLP_DEBUG_SUSPEND=y
         fi
-        JAVA_DEBUG="-Dwas.debug.mode=true -Dcom.ibm.websphere.ras.inject.at.transform=true -Dsun.reflect.noInflation=true -agentlib:jdwp=transport=dt_socket,server=y,suspend=${WLP_DEBUG_SUSPEND},address=${WLP_DEBUG_ADDRESS}"
+        if [ "${WLP_DEBUG_REMOTE}" = "y" ]
+        then
+          WLP_DEBUG_REMOTE_HOST="0.0.0.0:"
+        else
+          WLP_DEBUG_REMOTE_HOST=""
+        fi
+        JAVA_DEBUG="-Dwas.debug.mode=true -Dsun.reflect.noInflation=true -agentlib:jdwp=transport=dt_socket,server=y,suspend=${WLP_DEBUG_SUSPEND},address=${WLP_DEBUG_REMOTE_HOST}${WLP_DEBUG_ADDRESS}"
       fi
 
       serverWorkingDirectory

@@ -1,7 +1,7 @@
 Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: com.ibm.ejs.container; type=internal,
  javax.interceptor; type=spec
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.4"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA

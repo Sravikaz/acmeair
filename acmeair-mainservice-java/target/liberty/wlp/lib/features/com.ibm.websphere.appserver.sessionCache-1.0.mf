@@ -1,4 +1,4 @@
-Created-By: 1.8.0 (IBM Corporation)
+Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: javax.cache; type=spec,
  javax.cache.annotation; type=spec,
  javax.cache.configuration; type=spec,
@@ -8,7 +8,7 @@ IBM-API-Package: javax.cache; type=spec,
  javax.cache.management; type=spec,
  javax.cache.processor; type=spec,
  javax.cache.spi; type=spec
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.3"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA
