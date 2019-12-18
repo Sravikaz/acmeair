@@ -1,5 +1,5 @@
-Created-By: 1.8.0 (IBM Corporation)
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.3"
+Created-By: 11.0.2 (Eclipse OpenJ9)
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA
@@ -21,7 +21,7 @@ Subsystem-Content: com.ibm.websphere.appserver.spi.artifact_1.2-javadoc.zip; typ
  com.ibm.ws.adaptable.module; version="[1.0.0,1.0.200)",
  com.ibm.ws.artifact.url; start-phase:=CONTAINER_EARLY; version="[1.0.0,1.0.200)",
  com.ibm.ws.classloading.configuration; version="[1.0.0,1.0.200)",
- com.ibm.ws.artifact.zip; version="[1.0.0,1.0.200)",
+ com.ibm.ws.artifact.zip; start-phase:=CONTAINER_EARLY; version="[1.0.0,1.0.200)",
  com.ibm.ws.artifact.overlay; version="[1.0.0,1.0.200)",
  com.ibm.ws.artifact.bundle; version="[1.0.0,1.0.200)",
  com.ibm.ws.artifact.equinox.module; version="[1.0.0,1.0.200)",
@@ -35,3 +35,4 @@ Subsystem-Type: osgi.subsystem.feature
 Subsystem-Vendor: IBM Corp.
 Subsystem-Version: 1.0.0
 Tool: Bnd-4.1.0.201810181252
+WLP-Activation-Type: parallel

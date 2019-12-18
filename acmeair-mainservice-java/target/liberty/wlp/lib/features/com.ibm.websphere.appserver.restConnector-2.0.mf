@@ -1,8 +1,8 @@
-Created-By: 1.8.0 (IBM Corporation)
+Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: com.ibm.websphere.jmx.connector.rest; type=ibm-api,
  com.ibm.ws.jmx.connector.client.rest; type=ibm-api,
  com.ibm.websphere.filetransfer; type=ibm-api
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.3"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA
@@ -23,7 +23,8 @@ Subsystem-Content: restConnector.jar; type=file; location:="clients/restConnecto
  com.ibm.ws.filetransfer; version="[1.0.0,1.0.200)",
  com.ibm.websphere.filetransfer; version="[1.0.0,1.0.200)",
  com.ibm.ws.jmx.request; version="[1.0.0,1.0.200)",
- com.ibm.json4j; version="[1.0.0,1.0.200)"
+ com.ibm.json4j; version="[1.0.0,1.0.200)",
+ com.ibm.ws.rest.handler.config; version="[1.0.0,1.0.200)"
 Subsystem-Description: %description
 Subsystem-License: https://www.eclipse.org/legal/epl-v10.html
 Subsystem-Localization: OSGI-INF/l10n/com.ibm.websphere.appserver.restConnector-2.0

@@ -1,7 +1,7 @@
-Created-By: 1.8.0 (IBM Corporation)
+Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: javax.transaction; type=spec,
  javax.transaction.xa; type=spec
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.3"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA

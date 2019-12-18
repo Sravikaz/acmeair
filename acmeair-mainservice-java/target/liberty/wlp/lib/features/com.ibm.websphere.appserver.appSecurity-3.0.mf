@@ -1,4 +1,4 @@
-Created-By: 1.8.0 (IBM Corporation)
+Created-By: 11.0.2 (Eclipse OpenJ9)
 IBM-API-Package: javax.security.enterprise; type=spec,
  javax.security.enterprise.authentication.mechanism.http; type=spec,
  javax.security.enterprise.credential; type=spec,
@@ -7,7 +7,7 @@ IBM-API-Package: javax.security.enterprise; type=spec,
  javax.security.auth.message.callback; type=spec,
  javax.security.auth.message.config; type=spec,
  javax.security.auth.message.module; type=spec
-IBM-AppliesTo: io.openliberty;productVersion="19.0.0.3"
+IBM-AppliesTo: io.openliberty;productVersion="19.0.0.12"
 IBM-Feature-Version: 2
 IBM-InstallTo: core
 IBM-License-Agreement: wlp/lafiles/LA
