@@ -32,14 +32,11 @@ echo "Route Host=${ROUTE_HOST}"
 cd "$(dirname "$0")"
 cd ..
 kubectl delete -f ${MANIFESTS}
-mvn clean package
-podman build --pull -t ${IMAGE_PREFIX}/acmeair-mainservice-java:latest .
-podman push ${IMAGE_PREFIX}/acmeair-mainservice-java:latest
 
 if [[ `grep -c ${IMAGE_PREFIX} ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml` == 0 ]]
 then
   echo "Adding ${IMAGE_PREFIX}/"
-  sed -i.bak "s@acmeair-mainservice-java:latest@${IMAGE_PREFIX}/acmeair-mainservice-java:latest@" ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml
+  sed -i.bak "s@acmeair-mainservice-java-s390x:latest@${IMAGE_PREFIX}/acmeair-mainservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml
 fi
 
 if [[ `grep -c ${ROUTE_HOST} ${MANIFESTS}/acmeair-mainservice-route.yaml` == 0 ]]
@@ -51,24 +48,18 @@ fi
 kubectl apply -f ${MANIFESTS}
 
 echo "Removing ${IMAGE_PREFIX}"
-sed -i.bak "s@${IMAGE_PREFIX}/acmeair-mainservice-java:latest@acmeair-mainservice-java:latest@" ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml
+sed -i.bak "s@${IMAGE_PREFIX}/acmeair-mainservice-java-s390x:latest@acmeair-mainservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml
 
 echo "Removing ${ROUTE_HOST}"
 sed -i.bak "s@${ROUTE_HOST}@_HOST_@" ${MANIFESTS}/acmeair-mainservice-route.yaml
 
-rm ${MANIFESTS}/acmeair-mainservice-route.yaml.bak
-rm ${MANIFESTS}/deploy-acmeair-mainservice-java.yaml.bak
-
 cd ../acmeair-authservice-java
 kubectl delete -f ${MANIFESTS}
-mvn clean package
-podman build --pull -t ${IMAGE_PREFIX}/acmeair-authservice-java .
-podman push ${IMAGE_PREFIX}/acmeair-authservice-java:latest
 
 if [[ `grep -c ${IMAGE_PREFIX} ${MANIFESTS}/deploy-acmeair-authservice-java.yaml` == 0 ]]
 then
   echo "Adding ${IMAGE_PREFIX}/"
-  sed -i.bak "s@acmeair-authservice-java:latest@${IMAGE_PREFIX}/acmeair-authservice-java:latest@" ${MANIFESTS}/deploy-acmeair-authservice-java.yaml
+  sed -i.bak "s@acmeair-authservice-java-s390x:latest@${IMAGE_PREFIX}/acmeair-authservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-authservice-java.yaml
 fi
 
 if [[ `grep -c ${ROUTE_HOST} ${MANIFESTS}/acmeair-authservice-route.yaml` == 0 ]]
@@ -80,24 +71,18 @@ fi
 kubectl apply -f ${MANIFESTS}
 
 echo "Removing ${IMAGE_PREFIX}"
-sed -i.bak "s@${IMAGE_PREFIX}/acmeair-authservice-java:latest@acmeair-authservice-java:latest@" ${MANIFESTS}/deploy-acmeair-authservice-java.yaml
+sed -i.bak "s@${IMAGE_PREFIX}/acmeair-authservice-java-s390x:latest@acmeair-authservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-authservice-java.yaml
 
 echo "Removing ${ROUTE_HOST}"
 sed -i.bak "s@${ROUTE_HOST}@_HOST_@" ${MANIFESTS}/acmeair-authservice-route.yaml
 
-rm ${MANIFESTS}/acmeair-authservice-route.yaml.bak
-rm ${MANIFESTS}/deploy-acmeair-authservice-java.yaml.bak
-
 cd ../acmeair-bookingservice-java
 kubectl delete -f ${MANIFESTS}
-mvn clean package
-podman build --pull -t ${IMAGE_PREFIX}/acmeair-bookingservice-java .
-podman push ${IMAGE_PREFIX}/acmeair-bookingservice-java:latest
 
 if [[ `grep -c ${IMAGE_PREFIX} ${MANIFESTS}/deploy-acmeair-bookingservice-java.yaml` == 0 ]]
 then
   echo "Adding ${IMAGE_PREFIX}/"
-  sed -i.bak "s@acmeair-bookingservice-java:latest@${IMAGE_PREFIX}/acmeair-bookingservice-java:latest@" ${MANIFESTS}/deploy-acmeair-bookingservice-java.yaml
+  sed -i.bak "s@acmeair-bookingservice-java-s390x:latest@${IMAGE_PREFIX}/acmeair-bookingservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-bookingservice-java.yaml
 fi
 
 if [[ `grep -c ${ROUTE_HOST} ${MANIFESTS}/acmeair-bookingservice-route.yaml` == 0 ]]
@@ -109,26 +94,18 @@ fi
 kubectl apply -f ${MANIFESTS}
 
 echo "Removing ${IMAGE_PREFIX}"
-sed -i.bak "s@${IMAGE_PREFIX}/acmeair-bookingservice-java:latest@acmeair-bookingservice-java:latest@" ${MANIFESTS}/deploy-acmeair-bookingservice-java.yaml
+sed -i.bak "s@${IMAGE_PREFIX}/acmeair-bookingservice-java-s390x:latest@acmeair-bookingservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-bookingservice-java.yaml
 
 echo "Removing ${ROUTE_HOST}"
 sed -i.bak "s@${ROUTE_HOST}@_HOST_@" ${MANIFESTS}/acmeair-bookingservice-route.yaml
 
-rm ${MANIFESTS}/acmeair-bookingservice-route.yaml.bak
-rm ${MANIFESTS}/deploy-acmeair-bookingservice-java.yaml.bak
-
-
-
 cd ../acmeair-customerservice-java
 kubectl delete -f ${MANIFESTS}
-mvn clean package
-podman build --pull -t ${IMAGE_PREFIX}/acmeair-customerservice-java .
-podman push ${IMAGE_PREFIX}/acmeair-customerservice-java:latest
 
 if [[ `grep -c ${IMAGE_PREFIX} ${MANIFESTS}/deploy-acmeair-customerservice-java.yaml` == 0 ]]
 then
   echo "Adding ${IMAGE_PREFIX}/"
-  sed -i.bak "s@acmeair-customerservice-java:latest@${IMAGE_PREFIX}/acmeair-customerservice-java:latest@" ${MANIFESTS}/deploy-acmeair-customerservice-java.yaml
+  sed -i.bak "s@acmeair-customerservice-java-s390x:latest@${IMAGE_PREFIX}/acmeair-customerservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-customerservice-java.yaml
 fi
 
 if [[ `grep -c ${ROUTE_HOST} ${MANIFESTS}/acmeair-customerservice-route.yaml` == 0 ]]
@@ -140,24 +117,18 @@ fi
 kubectl apply -f ${MANIFESTS}
 
 echo "Removing ${IMAGE_PREFIX}"
-sed -i.bak "s@${IMAGE_PREFIX}/acmeair-customerservice-java:latest@acmeair-customerservice-java:latest@" ${MANIFESTS}/deploy-acmeair-customerservice-java.yaml
+sed -i.bak "s@${IMAGE_PREFIX}/acmeair-customerservice-java-s390x:latest@acmeair-customerservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-customerservice-java.yaml
 
 echo "Removing ${ROUTE_HOST}"
 sed -i.bak "s@${ROUTE_HOST}@_HOST_@" ${MANIFESTS}/acmeair-customerservice-route.yaml
 
-rm ${MANIFESTS}/acmeair-customerservice-route.yaml.bak
-rm ${MANIFESTS}/deploy-acmeair-customerservice-java.yaml.bak
-
 cd ../acmeair-flightservice-java
 kubectl delete -f ${MANIFESTS}
-mvn clean package
-podman build --pull -t ${IMAGE_PREFIX}/acmeair-flightservice-java .
-podman push ${IMAGE_PREFIX}/acmeair-flightservice-java:latest
 
 if [[ `grep -c ${IMAGE_PREFIX} ${MANIFESTS}/deploy-acmeair-flightservice-java.yaml` == 0 ]]
 then
   echo "Adding ${IMAGE_PREFIX}/"
-  sed -i.bak "s@acmeair-flightservice-java:latest@${IMAGE_PREFIX}/acmeair-flightservice-java:latest@" ${MANIFESTS}/deploy-acmeair-flightservice-java.yaml
+  sed -i.bak "s@acmeair-flightservice-java-s390x:latest@${IMAGE_PREFIX}/acmeair-flightservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-flightservice-java.yaml
 fi
 
 if [[ `grep -c ${ROUTE_HOST} ${MANIFESTS}/acmeair-flightservice-route.yaml` == 0 ]]
@@ -169,13 +140,7 @@ fi
 kubectl apply -f ${MANIFESTS}
 
 echo "Removing ${IMAGE_PREFIX}"
-sed -i.bak "s@${IMAGE_PREFIX}/acmeair-flightservice-java:latest@acmeair-flightservice-java:latest@" ${MANIFESTS}/deploy-acmeair-flightservice-java.yaml
+sed -i.bak "s@${IMAGE_PREFIX}/acmeair-flightservice-java-s390x:latest@acmeair-flightservice-java-s390x:latest@" ${MANIFESTS}/deploy-acmeair-flightservice-java.yaml
 
 echo "Removing ${ROUTE_HOST}"
 sed -i.bak "s@${ROUTE_HOST}@_HOST_@" ${MANIFESTS}/acmeair-flightservice-route.yaml
-
-rm ${MANIFESTS}/acmeair-flightservice-route.yaml.bak
-rm ${MANIFESTS}/deploy-acmeair-flightservice-java.yaml.bak
-
-
-
