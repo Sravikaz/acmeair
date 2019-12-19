@@ -14,9 +14,8 @@ Prerequisits:
 ```
 oc create secret docker-registry <pull_secret_name> \
     --docker-server=sys-loz-test-team-docker-local.artifactory.swg-devops.com \
-    --docker-username=<user_name> \
+    --docker-username=<email> \
     --docker-password=<api_key> \
-    --docker-email=<email>
   ```
   and make sure to add the secret to your secive account (probably default)
   ` oc secrets add serviceaccount/default secrets/<pull_secret_name> --for=pull `
@@ -33,4 +32,4 @@ Note: If your mongodb containers are failing its probably because you have an op
 
 
 ### Development Notes
-Remember to push with [no ci] if updating README so that travis doesn't make a bunch of needless builds.
+Remember to push with [ci skip] if updating README so that travis doesn't make a bunch of needless builds.
