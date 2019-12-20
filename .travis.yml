@@ -10,12 +10,13 @@ jobs:
     env: DOCKER_FILE=Dockerfile-x86 
     script: 
     - "make docker:login"
-    - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+    - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh sys-loz-test-team-docker-local.artifactory.swg-devops.com/acmeair/acmeair openshiftacmeair.com"
   - os: linux-s390
     env: DOCKER_FILE=Dockerfile-s390x 
     script: 
     - "make docker:login"
-    - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh"
+    - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh sys-loz-test-team-docker-local.artifactory.swg-devops.com/acmeair/acmeair openshiftacmeair.com"
+
 
   - stage: Manifest
     script:
