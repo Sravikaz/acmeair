@@ -13,8 +13,6 @@ Prerequisits:
 3. Add pull secret to openshift project. First test connection on your local machine by running `docker login sys-loz-test-team-docker-local.artifactory.swg-devops.com  -u <email> -p <api key> 
 If docker was successfully logged in then you have access to private regitry. Easiest way to add access to your openshift project is to run`oc create secret generic loz-artifactory --from-file=.dockerconfigjson=.docker/config.json --type=kubernetes.io/dockerconfigjson` this uses all the keys to private image registries so be careful. Alternative solutions: https://docs.openshift.com/container-platform/4.2/openshift_images/managing-images/using-image-pull-secrets.html
 Now add the secret to the default service account to use in building your images: `oc secrets link default loz-artifactory `
-  and make sure to add the secret to your secive account (probably default)
-  ` oc secrets add serviceaccount/default secrets/<pull_secret_name> --for=pull `
 4. Pull this repository to the machine logged into Openshift cluster.
 5. By default openshift does not allow containers running as root. Right now the mongoDB container runs as root so be sure to `oc adm policy add-scc-to-group anyuid system:authenticated  ` so that the db containers can run.
 5. Run `/acmeair-mainservices-java/scripts/deployToOpenshift.sh` to create deployments for all of the services required for Acme air. 
@@ -28,4 +26,4 @@ Note: If your mongodb containers are failing its probably because you have an op
 
 
 ### Development Notes
-Remember to push with [no ci] if updating README so that travis doesn't make a bunch of needless builds.
+Remember to push with [ci skip] if updating README so that travis doesn't make a bunch of needless builds.
