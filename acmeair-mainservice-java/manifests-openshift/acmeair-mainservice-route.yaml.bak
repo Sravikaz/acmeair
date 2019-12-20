@@ -3,7 +3,7 @@ kind: Route
 metadata:
   name: acmeair-main-route
 spec:
-  host: openshifacmeair.com
+  host: _HOST_
   path: /acmeair
   to:
     kind: Service

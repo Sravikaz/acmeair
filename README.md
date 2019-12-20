@@ -1,6 +1,7 @@
 # Deploying Acme Air on Openshift
 
 The following describe neccessary steps to run on Acme-Air workload on openshift.
+This "Hard Coded" branch for easy sripts to use the sys-loz-test-team-docker-local.artifactory
 
 ## Connecting Openshift to AcmeAir, pulling from Artifactory 
 
