@@ -3,7 +3,7 @@ kind: Route
 metadata:
   name: acmeair-auth-route
 spec:
-  host: openshiftacmeair.com
+  host: _HOST_
   path: /auth
   to:
     kind: Service

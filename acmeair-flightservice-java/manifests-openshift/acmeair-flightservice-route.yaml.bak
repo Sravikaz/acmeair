@@ -3,7 +3,7 @@ kind: Route
 metadata:
   name: acmeair-flight-route
 spec:
-  host: openshiftacmeair.com
+  host: _HOST_
   path: /flight
   to:
     kind: Service
