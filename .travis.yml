@@ -16,16 +16,17 @@ jobs:
     script: 
     - "make docker:login"
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
- - os: linux-s390
+  - os: linux-s390
     env: DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com
     script: 
     - "make docker:login"
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
- - os: linux-s390
+  - os: linux-s390
     env: DOCKER_REGISTRY=sys-loz-test-team-docker-local.artifactory.swg-devops.com
     script: 
     - "make docker:login"
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
+
   - stage: Manifest
     env:
      - DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com
