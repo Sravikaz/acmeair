@@ -28,12 +28,12 @@ jobs:
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
   - stage: Manifest
     env:
-     - DOCKER_REGITRY=sys-ltic-docker-local.artifactory.swg-devops.com
+     - DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com
     script:
     - sudo bash ci/enable-experimental.sh
     - sudo bash ci/manifest-create-and-push.sh
   - env:
-     - DOCKER_REGITRY=sys-loz-test-team-docker-local.artifactory.swg-devops.com
+     - DOCKER_REGISTRY=sys-loz-test-team-docker-local.artifactory.swg-devops.com
     script:
     - sudo bash ci/enable-experimental.sh
     - sudo bash ci/manifest-create-and-push.sh
