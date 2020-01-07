@@ -16,9 +16,9 @@ If docker was successfully logged in then you have access to private regitry. Ea
 Now add the secret to the default service account to use in building your images: `oc secrets link default loz-artifactory --for=pull `
 4. Pull this repository to the machine logged into Openshift cluster.
 5. By default openshift does not allow containers running as root. Right now the mongoDB container runs as root so be sure to `oc adm policy add-scc-to-group anyuid system:authenticated  ` so that the db containers can run.
-5. Run `/acmeair-mainservices-java/scripts/deployToOpenshift.sh` to create deployments for all of the services required for Acme air. 
-6. Add openshiftacmeair.com to /etc/hosts so that it resolves to the same ip as your openshift cluster gui command center.
-7. Wait a couple minutes and go to http://<auto_generated_url>/acmeair
+5. Run `/acmeair-mainservices-java/scripts/deployToOpenshift.sh <YOUR_CUSTOM_ROUTENAME>` to create deployments for all of the services required for Acme air. If no route name is given then default route name "defaultacmeair.com" will be given.
+6. Add your custom routename to /etc/hosts so that it resolves to the same ip as your openshift cluster gui command center.
+7. Wait a couple minutes and go to http://<YOUR_CUSTOM_ROUTENAME>/acmeair
 8. Go to the Configuration Page and Load the Database
 
 ### Troubleshooting
