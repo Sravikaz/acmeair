@@ -14,20 +14,32 @@
 # limitations under the License.
 
 MANIFESTS=manifests-openshift
-
+if [ $# -eq 0 ]
+  then
+    echo "Using route name openshiftacmeair.com"
+    ROUTENAME=$1
+else
+    echo "Using route name $1 "
+    ROUTENAME=$1
+fi
 cd "$(dirname "$0")"
 cd ..
 kubectl delete -f ${MANIFESTS}
+sed -i 's/openshiftacmeair.com/$1/g' acmeair-mainservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 cd ../acmeair-authservice-java
 kubectl delete -f ${MANIFESTS}
+sed -i 's/openshiftacmeair.com/$1/g' acmeair-mainservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 cd ../acmeair-bookingservice-java
 kubectl delete -f ${MANIFESTS}
+sed -i 's/openshiftacmeair.com/$1/g' acmeair-mainservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 cd ../acmeair-customerservice-java
 kubectl delete -f ${MANIFESTS}
+sed -i 's/openshiftacmeair.com/$1/g' acmeair-mainservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 cd ../acmeair-flightservice-java
 kubectl delete -f ${MANIFESTS}
+sed -i 's/openshiftacmeair.com/$1/g' acmeair-mainservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
