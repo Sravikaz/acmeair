@@ -1,7 +1,6 @@
 # Deploying Acme Air on Openshift
 
 The following describe neccessary steps to run on Acme-Air workload on openshift.
-For those with access to sys-loz-test-team-docker-local.artifactory.swg-devops.com/ switch to branch "hard-coded"
 
 ## Connecting Openshift to AcmeAir, pulling from Artifactory 
 
@@ -11,18 +10,16 @@ Prerequisits:
  
 1. `oc login`
 2. Login to https://eu.artifactory.swg-devops.com get copy api key(from account settings in top right).
-3. Add pull secret to openshift project. First test connection on your local machine by running
-`docker login <your_registry_url>  -u <email> -p <api key> `
-If docker was successfully logged in then you have access to private regitry. Easiest way to add access to your openshift project is to run 
-`oc create secret generic <secret_name> --from-file=.dockerconfigjson=.docker/config.json --type=kubernetes.io/dockerconfigjson`
-this uses all the keys to private image registries so be careful. Alternative solutions: https://docs.openshift.com/container-platform/4.2/openshift_images/managing-images/using-image-pull-secrets.html
-Now add the secret to the default service account to use in building your images:
-`oc secrets link default <secret_name> `
+
+3. Add pull secret to openshift project. First test connection on your local machine by running `docker login sys-loz-test-team-docker-local.artifactory.swg-devops.com  -u <email> -p <api key> 
+If docker was successfully logged in then you have access to private regitry. Easiest way to add access to your openshift project is to run`oc create secret generic loz-artifactory --from-file=.dockerconfigjson=.docker/config.json --type=kubernetes.io/dockerconfigjson` this uses all the keys to private image registries so be careful. Alternative solutions: https://docs.openshift.com/container-platform/4.2/openshift_images/managing-images/using-image-pull-secrets.html
+Now add the secret to the default service account to use in building your images: `oc secrets link default loz-artifactory --for=pull `
+
 4. Pull this repository to the machine logged into Openshift cluster.
 5. By default openshift does not allow containers running as root. Right now the mongoDB container runs as root so be sure to `oc adm policy add-scc-to-group anyuid system:authenticated  ` so that the db containers can run.
-5. Run `/acmeair-mainservices-java/scripts/deployToOpenshift.sh` to create deployments for all of the services required for Acme air. 
-6. Add openshiftacmeair.com to /etc/hosts so that it resolves to the same ip as your openshift cluster gui command center.
-7. Wait a couple minutes and go to http://<auto_generated_url>/acmeair
+5. Run `/acmeair-mainservices-java/scripts/deployToOpenshift.sh <YOUR_CUSTOM_ROUTENAME>` to create deployments for all of the services required for Acme air. If no route name is given then default route name "defaultacmeair.com" will be given.
+6. Add your custom routename to /etc/hosts so that it resolves to the same ip as your openshift cluster gui command center.
+7. Wait a couple minutes and go to http://<YOUR_CUSTOM_ROUTENAME>/acmeair
 8. Go to the Configuration Page and Load the Database
 
 ### Troubleshooting

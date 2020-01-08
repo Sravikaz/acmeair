@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: acmeair-bookingservice-java
-        image: acmeair-bookingservice-java:latest
+        image: sys-loz-test-team-docker-local.artifactory.swg-devops.com/acmeair/acmeair/acmeair-bookingservice-java:latest
         ports:
           - containerPort: 9080
           - containerPort: 9443
