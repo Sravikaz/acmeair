@@ -13,7 +13,8 @@ Acme Air workload, configured to run on Openshift on Z. The Acme Air workload mo
 2. Login to https://eu.artifactory.swg-devops.com and copy your api key (from account settings in top right).
 3. Add pull secret to openshift project. You can first test connection on your local machine by running `docker login sys-loz-test-team-docker-local.artifactory.swg-devops.com  -u <email> -p <api key> `. Or changing "sys-loz..." to your registry url.
 4. If docker was successfully logged in then you have access to the private regitry. Easiest way to add access to your openshift project is to run
-```oc create secret docker-registry sys-loz-artifactory \
+```
+oc create secret docker-registry sys-loz-artifactory \
  --docker-server=sys-loz-test-team-docker-local.artifactory.swg-devops.com \
 --docker-username=<your_email> \
 --docker-password=<your_api_key> 
