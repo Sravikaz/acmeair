@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: acmeair-customerservice-java
-        image: sys-loz-test-team-docker-local.artifactory.swg-devops.com/acmeair/acmeair/acmeair-customerservice-java:latest
+        image: sys-loz-test-team-docker-local.artifactory.swg-devops.com/acmeair/acmeair-customerservice-java:latest
         ports:
           - containerPort: 9080
           - containerPort: 9443

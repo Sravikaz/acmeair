@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: acmeair-authservice-java
-        image: sys-loz-test-team-docker-local.artifactory.swg-devops.com/acmeair/acmeair/acmeair-authservice-java:latest
+        image: sys-loz-test-team-docker-local.artifactory.swg-devops.com/acmeair/acmeair-authservice-java:latest
         ports:
           - containerPort: 9080
           - containerPort: 9443
