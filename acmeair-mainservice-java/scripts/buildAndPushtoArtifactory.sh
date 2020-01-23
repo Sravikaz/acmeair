@@ -16,12 +16,11 @@
 set -exo pipefail
 
 NAMESPACE="acmeair"
-ARCH="$(uname -m)"
 DOCKERFILE=Dockerfile
 CLUSTER=${DOCKER_REGISTRY}
 
 #Extra installations required for s390 image
-if [ ${ARCH} == 's390x' ]; then
+if [ ${DOCKER_ARCH} == 's390x' ]; then
     export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-s390x
     sudo apt-get install maven
 fi
@@ -30,34 +29,34 @@ cd "$(dirname "$0")"
 cd ..
 mvn clean package
 
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
-docker tag ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:latest
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:${TRAVIS_BUILD_ID}
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${ARCH}:latest
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${DOCKER_ARCH}:latest
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-mainservice-java-${DOCKER_ARCH}:latest
 cd ../acmeair-authservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
-docker tag ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:latest
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:${TRAVIS_BUILD_ID}
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${ARCH}:latest
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${DOCKER_ARCH}:latest
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-authservice-java-${DOCKER_ARCH}:latest
 
 cd ../acmeair-bookingservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
-docker tag ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:latest
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:${TRAVIS_BUILD_ID}
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${ARCH}:latest
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${DOCKER_ARCH}:latest
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-bookingservice-java-${DOCKER_ARCH}:latest
 
 cd ../acmeair-customerservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
-docker tag ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:latest
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:${TRAVIS_BUILD_ID}
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${ARCH}:latest
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${DOCKER_ARCH}:latest
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-customerservice-java-${DOCKER_ARCH}:latest
 
 cd ../acmeair-flightservice-java
 mvn clean package
-docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
-docker tag ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:latest
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:${TRAVIS_BUILD_ID}
-docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${ARCH}:latest
+docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} -f ${DOCKERFILE} .
+docker tag ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:latest
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID}
+docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:latest

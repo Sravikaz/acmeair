@@ -7,22 +7,22 @@ jobs:
   include:
   - stage: Build
     os: linux
-    env: DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com
+    env: DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com DOCKER_ARCH=amd64
     script: 
     - "make docker:login"
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
   - os: linux
-    env: DOCKER_REGISTRY=sys-loz-test-team-docker-local.artifactory.swg-devops.com
+    env: DOCKER_REGISTRY=sys-loz-test-team-docker-local.artifactory.swg-devops.com DOCKER_ARCH=amd64
     script: 
     - "make docker:login"
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
   - os: linux-s390
-    env: DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com
+    env: DOCKER_REGISTRY=sys-ltic-docker-local.artifactory.swg-devops.com DOCKER_ARCH=s390x
     script: 
     - "make docker:login"
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
   - os: linux-s390
-    env: DOCKER_REGISTRY=sys-loz-test-team-docker-local.artifactory.swg-devops.com
+    env: DOCKER_REGISTRY=sys-loz-test-team-docker-local.artifactory.swg-devops.com DOCKER_ARCH=s390x
     script: 
     - "make docker:login"
     - "./acmeair-mainservice-java/scripts/buildAndPushtoArtifactory.sh "
