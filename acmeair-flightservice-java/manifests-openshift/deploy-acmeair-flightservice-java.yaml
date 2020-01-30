@@ -96,7 +96,7 @@ spec:
         - name: acmeair-flight-db-2
           emptyDir: {}
       containers:
-      - image: mongo:4.2.2-bionic       
+      - image: s390x/mongo:4.2
         name: acmeair-flight-db
         ports:
         - containerPort: 27017
