@@ -44,3 +44,15 @@ Note: If your mongodb containers are failing its probably because you have an op
 Changes to this codebase are built from travis and pushed to sys-loz-test-team and sys-ltic artifactorys.
 Remember to push with [ci skip] if updating README so that travis doesn't make a bunch of needless builds.
 
+# Deploying Acme Air with Docker
+
+### Prerequisites:
+ - Access to one of the internal artifactory registries hosting Acmeair images. 
+ (Note: To build with internal registry go to blue perf's official Acmeair and follow those instructions instead)
+ 
+### Step by step
+1. Long into the docker repository hosting the images by running `docker login sys-loz-test-team-docker-local.artifactory.swg-devops.com  -u <email> -p <api key>`. Or changing "sys-loz..." to your registry url.
+2. Clone this code repository to the machine intended to host the services (the example uses localhost)
+3. Run `docker-compose up -d` to bring up the acmeair services on the `acmeair` docker network
+4. Access the acmeair UI at `http://localhost/acmeair/`
+
