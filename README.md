@@ -19,7 +19,7 @@ oc create secret docker-registry sys-loz-artifactory \
 --docker-username=<your_email> \
 --docker-password=<your_api_key> 
 ```
-Now add the secret to the default service account to use in building your images: `oc secrets link default loz-artifactory --for=pull `
+Now add the secret to the default service account to use in building your images: `oc secrets link default sys-loz-artifactory --for=pull `
 
 5. Clone this code repository to the machine logged into Openshift cluster.
 6. By default openshift does not allow containers running as root. Right now the mongoDB container runs as root so be sure to `oc adm policy add-scc-to-group anyuid system:authenticated  ` so that the db containers can run.
