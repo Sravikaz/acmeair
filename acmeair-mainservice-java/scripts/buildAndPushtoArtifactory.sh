@@ -19,11 +19,6 @@ NAMESPACE="acmeair"
 DOCKERFILE=Dockerfile
 CLUSTER=${DOCKER_REGISTRY}
 
-#Extra installations required for s390 image
-if [ ${DOCKER_ARCH} == 's390x' ]; then
-    export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-s390x
-    sudo apt-get install maven
-fi
 
 cd "$(dirname "$0")"
 cd ..
