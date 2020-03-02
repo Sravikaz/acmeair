@@ -14,7 +14,6 @@
 # limitations under the License.
 #-----------------------------------------------
 #This script builds acmeair application on openshift.
-if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then 
 MANIFESTS=manifests-openshift
 #Use default route name unless route name is specified at input
 if [ $# -eq 0 ]
@@ -51,4 +50,3 @@ kubectl delete -f ${MANIFESTS}
 sed -i 's/defaultacmeair.com/'${ROUTENAME}'/g' $MANIFESTS/acmeair-flightservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 sed -i 's/'${ROUTENAME}'/defaultacmeair.com/g' $MANIFESTS/acmeair-flightservice-route.yaml
-fi
