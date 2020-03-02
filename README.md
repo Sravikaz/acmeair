@@ -23,7 +23,7 @@ Now add the secret to the default service account to use in building your images
 
 5. Clone this code repository to the machine logged into Openshift cluster.
 6. By default openshift does not allow containers running as root. Right now the mongoDB container runs as root so be sure to `oc adm policy add-scc-to-group anyuid system:authenticated  ` so that the db containers can run.
-7. Run `sh ./acmeair-mainservices-java/scripts/deployToOpenshift.sh <YOUR_CUSTOM_ROUTENAME>` to create deployments for all of the services required for Acme air. If no route name is given then default route name "defaultacmeair.com" will be given.
+7. Run `sh ./acmeair-mainservice-java/scripts/deployToOpenshift.sh <YOUR_CUSTOM_ROUTENAME>` to create deployments for all of the services required for Acme air. If no route name is given then default route name "defaultacmeair.com" will be given.
 8. Add your custom routename to /etc/hosts so that it resolves to the your openshift bastion.
 9. Wait a couple seconds and go to http://<YOUR_CUSTOM_ROUTENAME>/acmeair in your browser.
 Have fun booking your vacation flights!
