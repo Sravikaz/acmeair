@@ -13,6 +13,8 @@
 # limitations under the License.
 
 #!/bin/bash
+if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_PULL_REQUEST" == "false" ]]; then
+
 set -exo pipefail
 
 NAMESPACE="acmeair"
@@ -55,3 +57,4 @@ docker build --pull -t ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCK
 docker tag ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID} ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:latest
 docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:${TRAVIS_BUILD_ID}
 docker push ${CLUSTER}/${NAMESPACE}/acmeair-flightservice-java-${DOCKER_ARCH}:latest
+fi
