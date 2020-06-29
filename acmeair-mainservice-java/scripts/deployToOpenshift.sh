@@ -26,27 +26,27 @@ else
 fi
 cd "$(dirname "$0")"
 cd ..
-kubectl delete -f ${MANIFESTS}
+kubectl delete -f ${MANIFESTS} 2>/dev/null || true
 sed -i 's/defaultacmeair.com/'${ROUTENAME}'/g' $MANIFESTS/acmeair-mainservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 sed -i 's/'${ROUTENAME}'/defaultacmeair.com/g' $MANIFESTS/acmeair-mainservice-route.yaml
 cd ../acmeair-authservice-java
-kubectl delete -f ${MANIFESTS}
+kubectl delete -f ${MANIFESTS} 2>/dev/null || true
 sed -i 's/defaultacmeair.com/'${ROUTENAME}'/g' $MANIFESTS/acmeair-authservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 sed -i 's/'${ROUTENAME}'/defaultacmeair.com/g' $MANIFESTS/acmeair-authservice-route.yaml
 cd ../acmeair-bookingservice-java
-kubectl delete -f ${MANIFESTS}
+kubectl delete -f ${MANIFESTS} 2>/dev/null || true
 sed -i 's/defaultacmeair.com/'${ROUTENAME}'/g' $MANIFESTS/acmeair-bookingservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 sed -i 's/'${ROUTENAME}'/defaultacmeair.com/g' $MANIFESTS/acmeair-bookingservice-route.yaml
 cd ../acmeair-customerservice-java
-kubectl delete -f ${MANIFESTS}
+kubectl delete -f ${MANIFESTS} 2>/dev/null || true
 sed -i 's/defaultacmeair.com/'${ROUTENAME}'/g' $MANIFESTS/acmeair-customerservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 sed -i 's/'${ROUTENAME}'/defaultacmeair.com/g' $MANIFESTS/acmeair-customerservice-route.yaml
 cd ../acmeair-flightservice-java
-kubectl delete -f ${MANIFESTS}
+kubectl delete -f ${MANIFESTS} 2>/dev/null || true
 sed -i 's/defaultacmeair.com/'${ROUTENAME}'/g' $MANIFESTS/acmeair-flightservice-route.yaml
 kubectl apply -f ${MANIFESTS} --validate=false
 sed -i 's/'${ROUTENAME}'/defaultacmeair.com/g' $MANIFESTS/acmeair-flightservice-route.yaml
