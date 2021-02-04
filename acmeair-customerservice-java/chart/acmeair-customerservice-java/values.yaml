@@ -123,14 +123,14 @@ ibm-websphere-liberty:
     # Example:
     # extraInitContainers:
     # - name: init-myservice
-    #   image: busybox
+    #   image: sys-loz-test-team-docker-local.artifactory.swg-devops.com/busybox
     #   command: ['sh', '-c', 'until nslookup myservice; do echo waiting for myservice; sleep 2; done;']
 
     extraContainers: []
     # Example:
     # extraContainers:
     # - name: my-sidecar
-    #  image: nginx:latest
+    #  image: sys-loz-test-team-docker-local.artifactory.swg-devops.com/nginx:latest
     # - name: lemonldap-ng-controller
     #  image: lemonldapng/lemonldap-ng-controller:0.2.0
     #  args:
