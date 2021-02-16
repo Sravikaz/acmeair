@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 # Copyright (c) 2018 IBM Corp.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +15,7 @@
 # limitations under the License.
 #-----------------------------------------------
 #This script builds acmeair application on openshift.
-MANIFESTS=manifests-openshift
+MANIFESTS=${MANIFESTS:-manifests-openshift}
 #Use default route name unless route name is specified at input
 if [ $# -eq 0 ]
   then

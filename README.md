@@ -36,6 +36,9 @@ One you have access to the Acme Air webpage:
 - To inspect airline information click "configure the acmeair environment" -> "Runtime Info". This is useful for testing Acmeair driver.
 - Go to https://github.ibm.com/OpenShift-on-Z/Acmeair-driver to configure acmeair-driver code.
 
+### Deploying on NFS persistent volume
+If your cluster is configured with NFS persistent volume (see https://github.ibm.com/OpenShift-on-Z/external-storage ) , then you can run acmeair with each database mounted on an nfs persistent volume. Simple run `export NFS_PV=true` before running the `deploytoOpenshift` as shown above.
+
 ### Troubleshooting
 - If /acmeair works in browser but you get a 404 for another subdomain your routes are configured incorrectly. Check that each pod is running by going to your url followed by /auth,/booking,/customer,/flight and /acmeair.
 - If you getting 403 errors you forgot to click logon
