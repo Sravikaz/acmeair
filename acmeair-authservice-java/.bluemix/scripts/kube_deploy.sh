@@ -12,16 +12,16 @@ if [ -z $IP_ADDR ]; then
 fi
 
 echo "Configuring cluster namespace"
-if kubectl get namespace ${CLUSTER_NAMESPACE}; then
+if oc get namespace ${CLUSTER_NAMESPACE}; then
   echo -e "Namespace ${CLUSTER_NAMESPACE} found."
 else
-  kubectl create namespace ${CLUSTER_NAMESPACE}
+  oc create namespace ${CLUSTER_NAMESPACE}
   echo -e "Namespace ${CLUSTER_NAMESPACE} created."
 fi
 
 echo "Configuring Tiller (Helm's server component)"
 helm init --upgrade
-kubectl rollout status -w deployment/tiller-deploy --namespace=kube-system
+oc rollout status -w deployment/tiller-deploy --namespace=kube-system
 helm version
 
 echo "CHART_NAME: $CHART_NAME"
@@ -50,7 +50,7 @@ echo -e "CHECKING deployment status of release ${RELEASE_NAME} with image tag: $
 echo ""
 for ITERATION in {1..30}
 do
-  DATA=$( kubectl get pods --namespace ${CLUSTER_NAMESPACE} -a -l release=${RELEASE_NAME} -o json )
+  DATA=$( oc get pods --namespace ${CLUSTER_NAMESPACE} -a -l release=${RELEASE_NAME} -o json )
   NOT_READY=$( echo $DATA | jq '.items[].status.containerStatuses[] | select(.image=="'"${IMAGE_REPOSITORY}:${BUILD_NUMBER}"'") | select(.ready==false) ' )
   if [[ -z "$NOT_READY" ]]; then
     echo -e "All pods are ready:"
@@ -78,13 +78,13 @@ if [[ ! -z "$NOT_READY" ]]; then
   echo "=========================================================="
   echo "DEPLOYMENT FAILED"
   echo "Deployed Services:"
-  kubectl describe services ${RELEASE_NAME}-${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
+  oc describe services ${RELEASE_NAME}-${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
   echo ""
   echo "Deployed Pods:"
-  kubectl describe pods --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
+  oc describe pods --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
   echo ""
   echo "Application Logs"
-  kubectl logs --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
+  oc logs --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
   echo "=========================================================="
   PREVIOUS_RELEASE=$( helm history ${RELEASE_NAME} | grep SUPERSEDED | sort -r -n | awk '{print $1}' | head -n 1 )
   echo -e "Could rollback to previous release: ${PREVIOUS_RELEASE} using command:"
@@ -93,10 +93,10 @@ if [[ ! -z "$NOT_READY" ]]; then
   # echo -e "History for release:${RELEASE_NAME}"
   # helm history ${RELEASE_NAME}
   # echo "Deployed Services:"
-  # kubectl describe services ${RELEASE_NAME}-${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
+  # oc describe services ${RELEASE_NAME}-${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
   # echo ""
   # echo "Deployed Pods:"
-  # kubectl describe pods --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
+  # oc describe pods --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
   exit 1
 fi
 
@@ -113,12 +113,12 @@ helm history ${RELEASE_NAME}
 
 # echo ""
 # echo "Deployed Services:"
-# kubectl describe services ${RELEASE_NAME}-${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
+# oc describe services ${RELEASE_NAME}-${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
 # echo ""
 # echo "Deployed Pods:"
-# kubectl describe pods --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
+# oc describe pods --selector app=${CHART_NAME} --namespace ${CLUSTER_NAMESPACE}
 
 echo "=========================================================="
 IP_ADDR=$(bx cs workers ${PIPELINE_KUBERNETES_CLUSTER_NAME} | grep normal | head -n 1 | awk '{ print $2 }')
-PORT=$(kubectl get services --namespace ${CLUSTER_NAMESPACE} | grep ${RELEASE_NAME} | sed 's/[^:]*:\([0-9]*\).*/\1/g')
+PORT=$(oc get services --namespace ${CLUSTER_NAMESPACE} | grep ${RELEASE_NAME} | sed 's/[^:]*:\([0-9]*\).*/\1/g')
 echo -e "View the application at: http://${IP_ADDR}:${PORT}"
