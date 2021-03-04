@@ -1,5 +1,4 @@
 # Deploying Acme Air on Openshift
-[![Build Status](https://travis.ibm.com/OpenShift-on-Z/acmeair.svg?token=2Z9aPReyBZBqsWpf55FC&branch=master)](https://travis.ibm.com/OpenShift-on-Z/acmeair)
 Acme Air workload, configured to run on Openshift on Z. The Acme Air workload models a Flight booking system for the fictional Acme Air company. See upstream source at https://github.com/blueperf/acmeair-mainservice-java for running on other plaforms than OCP. Once deployed, access Acmeair application by going to https://<your_custom_domain>/acmeair . To simulate many customers interating with the system use Acmeair-driver https://github.ibm.com/OpenShift-on-Z/Acmeair-driver . For running acmeair on nfs persistent volume checkout nfs_volume branch. For running as part of the kitchen sink ci test checkout the jenkins branch.
 
 ## Connecting Openshift to AcmeAir, pulling from Artifactory 
