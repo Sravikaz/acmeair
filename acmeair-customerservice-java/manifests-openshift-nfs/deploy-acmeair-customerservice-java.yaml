@@ -92,6 +92,10 @@ spec:
       labels:
         name: acmeair-customer-db
     spec:
+      serviceAccountName: sa-with-anyuid
+      securityContext:
+        runAsUser: 1001
+        fsGroup: 1001
       volumes:
         - name: acmeair-customer-db-2
           persistentVolumeClaim:
@@ -116,9 +120,9 @@ metadata:
   name: customerpvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
-  storageClassName: nfs
+  storageClassName: ocs-storagecluster-cephfs
   volumeMode: Filesystem

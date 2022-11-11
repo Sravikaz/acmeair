@@ -245,7 +245,7 @@ ibm-open-liberty:
     ## Specify the name of the StorageClass
     ## Setting StorageClass: "" will use whatever storageClass is currently
     ## setup as the Default
-    storageClassName: ""
+    storageClassName: "ocs-storagecluster-cephfs"
 
     # if your not using dynamic provisioning, you can use selectors to
     # refine the binding process. You cannot specify a selector if your using dynamic provisioning!
@@ -401,7 +401,7 @@ ibm-mongodb-dev:
    
     ## Specify the name of the StorageClass
     ## empty string means don't use a StorageClass
-    storageClassName: ""
+    storageClassName: "ocs-storagecluster-cephfs"
 
     ## Required minimum Persistence Storage volume size of 8Gi
     size: 20Gi

@@ -92,6 +92,10 @@ spec:
       labels:
         name: acmeair-customer-db
     spec:
+      serviceAccountName: sa-with-anyuid
+      securityContext:
+        runAsUser: 1001
+        fsGroup: 1001
       volumes:
         - name: acmeair-customer-db-1
           emptyDir: {}

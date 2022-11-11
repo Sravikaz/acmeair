@@ -94,6 +94,10 @@ spec:
       labels:
         name: acmeair-booking-db
     spec:
+      serviceAccountName: sa-with-anyuid
+      securityContext:
+          runAsUser: 1001
+          fsGroup: 1001
       volumes:
         - name: acmeair-booking-db-1
           emptyDir: {}
